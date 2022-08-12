@@ -1,0 +1,119 @@
+<%- include("../partials/head") %>
+ <%- include("../partials/usernavbar") %> 
+<% if(user.artist == "true"){ %>
+<script>
+ window.onload = ()=>{
+   window.location.href = "/artist/home"
+ }
+</script>
+<% } if(user.ekip == "true"){ %>
+<script>
+  window.onload = ()=>{
+   window.location.href = "/ekip/home"
+ } 
+</script>   
+<% } if(user.admin == "true") { %>
+<script>
+  window.onload = ()=>{
+   window.location.href = "/admin/home"
+ }
+</script>
+<% } %>
+<div class="container">
+<div class="row justify-content-center">
+
+<img class="logo" style="width:55%" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/fc23f607-6465-4a75-97ad-c2f36e50a783.image.png?v=1659804159750">
+<br><br><br>
+<% about.forEach( about => { %><span class="description w-50"><%- about.text %></span><% }) %>
+</div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ccc" fill-opacity="1" d="M0,288L0,224L55.4,224L55.4,96L110.8,96L110.8,288L166.2,288L166.2,64L221.5,64L221.5,32L276.9,32L276.9,64L332.3,64L332.3,160L387.7,160L387.7,256L443.1,256L443.1,256L498.5,256L498.5,192L553.8,192L553.8,64L609.2,64L609.2,224L664.6,224L664.6,160L720,160L720,64L775.4,64L775.4,64L830.8,64L830.8,160L886.2,160L886.2,128L941.5,128L941.5,64L996.9,64L996.9,160L1052.3,160L1052.3,256L1107.7,256L1107.7,320L1163.1,320L1163.1,256L1218.5,256L1218.5,192L1273.8,192L1273.8,128L1329.2,128L1329.2,224L1384.6,224L1384.6,128L1440,128L1440,320L1384.6,320L1384.6,320L1329.2,320L1329.2,320L1273.8,320L1273.8,320L1218.5,320L1218.5,320L1163.1,320L1163.1,320L1107.7,320L1107.7,320L1052.3,320L1052.3,320L996.9,320L996.9,320L941.5,320L941.5,320L886.2,320L886.2,320L830.8,320L830.8,320L775.4,320L775.4,320L720,320L720,320L664.6,320L664.6,320L609.2,320L609.2,320L553.8,320L553.8,320L498.5,320L498.5,320L443.1,320L443.1,320L387.7,320L387.7,320L332.3,320L332.3,320L276.9,320L276.9,320L221.5,320L221.5,320L166.2,320L166.2,320L110.8,320L110.8,320L55.4,320L55.4,320L0,320L0,320Z"></path></svg>
+<div class="container-fluid" style="background-color:#ccc">
+<div class="container"><br>
+<h4>Ekip Üyeleri</h4>
+<div class="row">
+ <% ekip.forEach( ekip =>{ %>
+  <div class="col-md-3">
+  <div class="card m-t" style="margin-bottom:2vh" id="a<%= ekip._id %>"> 
+  <img class="card-img-top rounded" src="<%= ekip.photo %>">
+  <div class="card-body">
+    <b class="username"><%= ekip.username %></b> 
+    <% for(let i=0;i<999;i++) { %>
+      <% if(ekip.badges[i] == "Murt Ekip Üyesi") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/35775a49-2085-4369-bb57-89b90480e5a2.image.png?v=1659552274484" title="Murt Ekip Üyesi">
+      <% } %>      
+      <% if(ekip.badges[i] == "Kurnaz Ekip Üyesi") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/5573cbdc-1990-47a8-b11f-38c5528f419f.image.png?v=1659552804400" title="Kurnaz Ekip Üyesi">
+      <% } %>
+      <% } %>
+    </div>
+  </div>
+  </div> 
+<% }) %>  
+</div>
+</div>
+</div>
+<div class="container-fluid" style="background-color:#b0acac">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ccc" fill-opacity="1" d="M0,128L0,96L36.9,96L36.9,224L73.8,224L73.8,64L110.8,64L110.8,192L147.7,192L147.7,288L184.6,288L184.6,96L221.5,96L221.5,64L258.5,64L258.5,96L295.4,96L295.4,128L332.3,128L332.3,288L369.2,288L369.2,128L406.2,128L406.2,192L443.1,192L443.1,128L480,128L480,96L516.9,96L516.9,224L553.8,224L553.8,224L590.8,224L590.8,224L627.7,224L627.7,192L664.6,192L664.6,128L701.5,128L701.5,64L738.5,64L738.5,64L775.4,64L775.4,160L812.3,160L812.3,256L849.2,256L849.2,224L886.2,224L886.2,224L923.1,224L923.1,256L960,256L960,64L996.9,64L996.9,128L1033.8,128L1033.8,288L1070.8,288L1070.8,256L1107.7,256L1107.7,32L1144.6,32L1144.6,192L1181.5,192L1181.5,96L1218.5,96L1218.5,128L1255.4,128L1255.4,192L1292.3,192L1292.3,256L1329.2,256L1329.2,224L1366.2,224L1366.2,64L1403.1,64L1403.1,160L1440,160L1440,0L1403.1,0L1403.1,0L1366.2,0L1366.2,0L1329.2,0L1329.2,0L1292.3,0L1292.3,0L1255.4,0L1255.4,0L1218.5,0L1218.5,0L1181.5,0L1181.5,0L1144.6,0L1144.6,0L1107.7,0L1107.7,0L1070.8,0L1070.8,0L1033.8,0L1033.8,0L996.9,0L996.9,0L960,0L960,0L923.1,0L923.1,0L886.2,0L886.2,0L849.2,0L849.2,0L812.3,0L812.3,0L775.4,0L775.4,0L738.5,0L738.5,0L701.5,0L701.5,0L664.6,0L664.6,0L627.7,0L627.7,0L590.8,0L590.8,0L553.8,0L553.8,0L516.9,0L516.9,0L480,0L480,0L443.1,0L443.1,0L406.2,0L406.2,0L369.2,0L369.2,0L332.3,0L332.3,0L295.4,0L295.4,0L258.5,0L258.5,0L221.5,0L221.5,0L184.6,0L184.6,0L147.7,0L147.7,0L110.8,0L110.8,0L73.8,0L73.8,0L36.9,0L36.9,0L0,0L0,0Z"></path></svg>
+
+ <div class="container">
+  <h4>Seçkin Çizerler</h4>
+  <div class="row jusitfy-content-center">
+  <% artist.forEach( artist => { %>
+  <div class="col-md-3">
+  <div class="card m-t" style="margin-bottom:2vh" id="a<%= artist._id %>"> 
+  <img class="card-img-top rounded" src="<%= artist.photo %>">
+  <div class="card-body">
+  <b class="username"><%= artist.username %></b> 
+  </div>
+  </div>
+  </div>   
+  <% }) %>
+   </div>
+  </div>
+</div>
+<div class="container-fluid" style="background-color:#9e9d9d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#b0acac" fill-opacity="1" d="M0,128L0,96L36.9,96L36.9,224L73.8,224L73.8,64L110.8,64L110.8,192L147.7,192L147.7,288L184.6,288L184.6,96L221.5,96L221.5,64L258.5,64L258.5,96L295.4,96L295.4,128L332.3,128L332.3,288L369.2,288L369.2,128L406.2,128L406.2,192L443.1,192L443.1,128L480,128L480,96L516.9,96L516.9,224L553.8,224L553.8,224L590.8,224L590.8,224L627.7,224L627.7,192L664.6,192L664.6,128L701.5,128L701.5,64L738.5,64L738.5,64L775.4,64L775.4,160L812.3,160L812.3,256L849.2,256L849.2,224L886.2,224L886.2,224L923.1,224L923.1,256L960,256L960,64L996.9,64L996.9,128L1033.8,128L1033.8,288L1070.8,288L1070.8,256L1107.7,256L1107.7,32L1144.6,32L1144.6,192L1181.5,192L1181.5,96L1218.5,96L1218.5,128L1255.4,128L1255.4,192L1292.3,192L1292.3,256L1329.2,256L1329.2,224L1366.2,224L1366.2,64L1403.1,64L1403.1,160L1440,160L1440,0L1403.1,0L1403.1,0L1366.2,0L1366.2,0L1329.2,0L1329.2,0L1292.3,0L1292.3,0L1255.4,0L1255.4,0L1218.5,0L1218.5,0L1181.5,0L1181.5,0L1144.6,0L1144.6,0L1107.7,0L1107.7,0L1070.8,0L1070.8,0L1033.8,0L1033.8,0L996.9,0L996.9,0L960,0L960,0L923.1,0L923.1,0L886.2,0L886.2,0L849.2,0L849.2,0L812.3,0L812.3,0L775.4,0L775.4,0L738.5,0L738.5,0L701.5,0L701.5,0L664.6,0L664.6,0L627.7,0L627.7,0L590.8,0L590.8,0L553.8,0L553.8,0L516.9,0L516.9,0L480,0L480,0L443.1,0L443.1,0L406.2,0L406.2,0L369.2,0L369.2,0L332.3,0L332.3,0L295.4,0L295.4,0L258.5,0L258.5,0L221.5,0L221.5,0L184.6,0L184.6,0L147.7,0L147.7,0L110.8,0L110.8,0L73.8,0L73.8,0L36.9,0L36.9,0L0,0L0,0Z"></path></svg>
+<div class="container">
+<h4>Galeri</h4>
+<div class="row">
+  <% photo.forEach( photo => { %>
+  <div class="col-md-3">
+      <div class="card">
+      <img class="card-img-top" src="<%= photo.photo %>">
+      <div class="card-body">
+        <h5 id="<%= photo._id %>"><%= photo.title %></h5>
+        <label id="<%= photo._id %>"><%= photo.description %></label>
+      </div>
+      </div>
+      </div>  
+    
+  <% }) %>
+</div>  
+</div>  
+</div>
+<div class="container-fluid text-light" style="background-color:#342e99">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#9e9d9d" fill-opacity="1" d="M0,128L0,96L36.9,96L36.9,224L73.8,224L73.8,64L110.8,64L110.8,192L147.7,192L147.7,288L184.6,288L184.6,96L221.5,96L221.5,64L258.5,64L258.5,96L295.4,96L295.4,128L332.3,128L332.3,288L369.2,288L369.2,128L406.2,128L406.2,192L443.1,192L443.1,128L480,128L480,96L516.9,96L516.9,224L553.8,224L553.8,224L590.8,224L590.8,224L627.7,224L627.7,192L664.6,192L664.6,128L701.5,128L701.5,64L738.5,64L738.5,64L775.4,64L775.4,160L812.3,160L812.3,256L849.2,256L849.2,224L886.2,224L886.2,224L923.1,224L923.1,256L960,256L960,64L996.9,64L996.9,128L1033.8,128L1033.8,288L1070.8,288L1070.8,256L1107.7,256L1107.7,32L1144.6,32L1144.6,192L1181.5,192L1181.5,96L1218.5,96L1218.5,128L1255.4,128L1255.4,192L1292.3,192L1292.3,256L1329.2,256L1329.2,224L1366.2,224L1366.2,64L1403.1,64L1403.1,160L1440,160L1440,0L1403.1,0L1403.1,0L1366.2,0L1366.2,0L1329.2,0L1329.2,0L1292.3,0L1292.3,0L1255.4,0L1255.4,0L1218.5,0L1218.5,0L1181.5,0L1181.5,0L1144.6,0L1144.6,0L1107.7,0L1107.7,0L1070.8,0L1070.8,0L1033.8,0L1033.8,0L996.9,0L996.9,0L960,0L960,0L923.1,0L923.1,0L886.2,0L886.2,0L849.2,0L849.2,0L812.3,0L812.3,0L775.4,0L775.4,0L738.5,0L738.5,0L701.5,0L701.5,0L664.6,0L664.6,0L627.7,0L627.7,0L590.8,0L590.8,0L553.8,0L553.8,0L516.9,0L516.9,0L480,0L480,0L443.1,0L443.1,0L406.2,0L406.2,0L369.2,0L369.2,0L332.3,0L332.3,0L295.4,0L295.4,0L258.5,0L258.5,0L221.5,0L221.5,0L184.6,0L184.6,0L147.7,0L147.7,0L110.8,0L110.8,0L73.8,0L73.8,0L36.9,0L36.9,0L0,0L0,0Z"></path></svg>
+<div class="container"><br>
+<h4><i class="fab fa-discord"></i> Discord</h4>
+<div class="row justify-content-center">
+<iframe style="margin-bottom:2vh;" src="https://discord.com/widget?id=784805891975282740&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+</div>
+</div>
+</div>
+</div>
+<%- include("../partials/web-socket") %>
+  <style>
+  *{transition:all 0.5s}
+  #icon{
+  width:30px;
+  height:30px;
+  }
+  .username{font-size:1.4em;}
+  #a62e9144734cfadf2c735f2da:hover{
+  background-color:#222;
+  color:#fff;
+  }
+  
+  </style>
+<%- include("../partials/web-socket") %>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color:black;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/fc23f607-6465-4a75-97ad-c2f36e50a783.image.png?v=1659804159750" style="width:80px;height:40px;"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="justify-content-center collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav"> 
+      <li class="nav-item dropdown" >
+         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><%= user.username %></a>
+          <ul class="dropdown-menu">
+           <li><a class="dropdown-item" href="/admin/dashboard/<%= user._id %>">Admin dashboard</a></li>
+           <li><a class="dropdown-item" href="/admin/edit/myProfile/<%= user.token %>">Profili düzenle</a></li>
+          <li><a class="dropdown-item" href="/admin/settings/<%= user.token %>">Ayarlar</a></li>
+            <li><a class="dropdown-item" href="/admin/profile/<%= user.url %>">Profil</a></li>
+        </ul>
+     </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/home">Anasayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/ekip">Ekip</a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

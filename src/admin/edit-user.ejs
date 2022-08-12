@@ -1,0 +1,29 @@
+<%- include("../partials/head") %>
+<%- include("../partials/adminnavbar") %>
+<div class="container">
+<div class="card m-t">
+<div class="card-body">
+<h4><%= users.username %> Kullanıcısını düzenle</h4>
+<form method="POST" action="/admin/edit/user/<%= users._id %>"  >
+<label>Admin</label>
+<select class="form-control" id="admin" name="admin">
+<option value="false">Verme</option>
+<option value="true">Ver</option>
+</select><br>
+<label>Ekip</label>
+<select id="ekip" name="ekip" class="form-control">
+<option value="false">Verme</option>
+<option value="true">Ver</option>
+</select><br>
+<label>Artist</label>
+<select class="form-control" id="artist" name="artist">
+<option value="false">Verme</option>
+<option value="true">Ver</option>
+</select><br>
+<label>URL</label>
+<input type="text" class="form-control" id="url" name="url" value="<%= users.url %>">
+<input type="submit" class="btn btn-dark" value="Düzenle">
+</form>
+</div>  
+</div>  
+</div>

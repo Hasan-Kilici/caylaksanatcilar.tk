@@ -1,0 +1,58 @@
+<%- include("../partials/head") %>
+<% if(user.admin != "true"){ %>
+<script>
+ window.onload = ()=>{
+   window.location.href = "/"
+ }
+</script>
+<% } %>
+<div class="container">
+  <div class="card m-t">
+<div class="card-body">
+<h4>Fotoğraf ekle</h4>
+<form method="POST" id="gonderiForm" enctype="multipart/form-data" action="/admin/add/photo/<%= user._id %>" >
+  <label>Başlık</label>
+  <input type="text" id="title" name="title" class="form-control">
+   <label>Açıklama</label>
+      <input type="text" id="description" name="description" class="form-control">
+      <label>Fotoğraf</label>
+       <input class="form-control" type="file" class="form-control-file" name="uploaded_file"><br> 
+     <input type="submit" class="btn btn-dark" value="Gönder">
+   </form>
+</div>
+</div>
+ <div class="card m-t">
+   <div class="card-body">
+     <h4><%= user.username %> Profilini düzenle</h4>
+     <form method="POST" enctype="multipart/form-data" action="/admin/edit/myProfile/<%= user.token %>">
+       <label>Açıklama</label><br>
+       <textarea id="about" name="about" class="form-control"><%= user.about %></textarea>
+       <br>
+        <input type="color" name="theme" id="theme" value="<%= user.theme %>" class="form-control">
+        <br>
+        <label>Profil Fotoğrafı</label>
+       <input class="form-control" type="file" class="form-control-file" name="uploaded_file"><br> <br>
+        <input type="submit" class="btn btn-dark">
+     </form>
+   </div>
+  </div>  
+<h4>Galeri</h4>
+  <div class="row m-t">
+    <% photo.forEach( photo => { %>
+    <div class="col-md-3">
+      <div class="card">
+      <img class="card-img-top" src="<%= photo.photo %>">
+      <div class="card-body">
+        <h5 id="<%= photo._id %>"><%= photo.title %></h5>
+        <label id="<%= photo._id %>"><%= photo.description %></label>
+      </div>
+        <div class="card-footer">
+          <form method="POST" action="/admin/remove/photo/<%= photo._id %>" >
+           <input type="submit" class="btn btn-danger" id="<%= photo._id %>" value="Sil">
+          </form> 
+        </div>
+      </div>
+      </div>
+    <% }) %>
+  </div>
+</div>

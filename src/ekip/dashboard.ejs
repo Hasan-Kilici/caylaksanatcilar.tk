@@ -1,0 +1,43 @@
+<%- include("../partials/head") %>
+<%- include("../partials/ekipnavbar") %>
+<div class="container">
+<div class="card m-t">
+<div class="card-body">
+<form method="POST" id="gonderiForm" enctype="multipart/form-data" action="/ekip/add/photo/<%= user._id %>" >
+  <label>Başlık</label>
+  <input type="text" id="title" name="title" class="form-control">
+   <label>Açıklama</label>
+      <input type="text" id="description" name="description" class="form-control">
+      <label>Fotoğraf</label>
+       <input class="form-control" type="file" class="form-control-file" name="uploaded_file"><br> 
+  <input type="submit" class="btn btn-dark" value="Gönder">
+</form>
+</div>
+</div>
+<%- include("../partials/web-socket") %>
+<div class="row">
+  <% photos.forEach( photos => { %>
+    <div class="col-md-3">
+    <div class="card m-t">
+      <img class="card-top-img" src="<%= photos.photo %>">
+      <div class="card-body">
+        <h4><%= photos.title %></h4>
+        <label><%= photos.description %></label>
+      </div>
+      <div class="card-footer">
+        <form method="POST" action="/ekip/remove/photo/<%= photos._id %>">
+          <input type="submit" class="btn btn-danger" value="Sil">
+        </form>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+</div>
+<% if(user.ekip != "true"){ %>  
+<script>
+window.onload = ()=>{
+  window.location.href = "/"
+}  
+</script>
+<% } %>

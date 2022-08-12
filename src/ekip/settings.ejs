@@ -1,0 +1,17 @@
+<%- include("../partials/head") %>
+ <%- include("../partials/ekipnavbar") %>
+  <div class="container">
+   <div class="card m-t">
+     <div class="card-body">
+       <form method="POST" action="/ekip/settings/<%= user.token %>">
+         <label>Email</label>
+         <input type="text" id="email" name="email" class="form-control" value="<%= user.email %>" required >
+         <label>Şifre</label>
+         <input type="text" id="password" name="password" class="form-control" value="<%= user.password %>" required>
+         <label>URL</label>
+         <input type="text" id="url" name="url" class="form-control" value="<%= user.url %>" required>
+         <input type="submit" class="btn btn-dark m-t">
+       </form>
+     </div>
+   </div>
+   </div>

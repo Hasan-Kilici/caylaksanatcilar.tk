@@ -1,0 +1,140 @@
+<%- include("../partials/head") %>
+<%- include("../partials/adminnavbar") %>
+<div class="container">
+<%- include("../partials/web-socket") %>
+<% about.forEach( about => { %>
+<div class="card m-t">
+  <div class="card-body">
+    <h4>
+    Hakkında Metni  
+    </h4>
+    <form method="POST" action="/admin/edit/about/<%= about._id %>">
+      <textarea id="text" name="text" class="form-control" id="<%= about._id %>"><%= about.text %></textarea>
+      <br>
+      <input type="submit" class="btn btn-dark" value="Güncelle">
+    </form>
+  </div>
+</div>
+<% }) %>
+<h4>Kullanıcılar</h4>
+<div class="row">
+  <% users.forEach ( users => { %>
+  <script>
+  window.onload = () => { document.getElementById("a<%=users._id%>").style.display = "none"; }
+  let n<%=users._id%> = false;
+  function goster_<%=users._id%>(){
+  if(n<%=users._id%> == false){
+    document.getElementById("a<%=users._id%>").style.display = "block"
+    n<%=users._id%> = true;
+  } else {
+    document.getElementById("a<%=users._id%>").style.display = "none"
+    n<%=users._id%> = false;
+  }
+  }
+  </script>
+  <div class="col-md-3">
+    <div class="card m-t">
+      <center>
+      <img class="card-top-img" src="<%=users.photo%>">
+      </center>
+      <div class="card-body">
+        <h4>
+          <%= users.username %>
+        </h4>
+        <label><%= users.email %></label><br>
+ <% for(let i=0;i<999;i++) { %>
+      <% if(users.badges[i] == "Gelistirici") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/95b99533-2d3f-4bc5-81aa-18e7d3835d79.image.png?v=1659538390283" title="Geliştirici">
+      <% } %>
+      <% if(users.badges[i] == "Modelci") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/ba9aa8a7-ca7b-4e8c-8a8d-9404973987ad.image.png?v=1659538861536" title="Modelci">
+      <% } %>      
+      <% if(users.badges[i] == "Arkaplan Çizeri") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/be80313c-3d12-4f08-9305-14300d94c15f.image.png?v=1659538914704" title="Arkaplan Çizer">
+      <% } %>
+      <% if(users.badges[i] == "Murt Ekip Üyesi") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/35775a49-2085-4369-bb57-89b90480e5a2.image.png?v=1659552274484" title="Murt Ekip Üyesi">
+      <% } %>      
+      <% if(users.badges[i] == "Kurnaz Ekip Üyesi") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/5573cbdc-1990-47a8-b11f-38c5528f419f.image.png?v=1659552804400" title="Kurnaz Ekip Üyesi">
+      <% } %>
+      <% if(users.badges[i] == "Storyborderci") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/b629844b-3b80-45f7-b427-512cfc562854.image.png?v=1659799206592" title="Story Borderci">
+      <% } %>
+      <% if(users.badges[i] == "Animatör") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/c4fd0ddb-cbb4-4c1f-a3fc-9e9c3b9752ab.image.png?v=1659799666122" title="Animatör">
+      <% } %>
+      <% if(users.badges[i] == "Seçkin Çizer") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/37b244b9-0ba0-4bcd-8bf7-94e1908afa64.image.png?v=1659800360950" title="Seçkin Çizer">
+      <% } %>
+      <% if(users.badges[i] == "Stajyer") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/a1d08ff5-e67f-4adc-9943-a0a3bab71f0d.image.png?v=1659800967923" title="Stajer">
+      <% } %>
+      <% if(users.badges[i] == "Seslendirmen") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/9a69a22d-b568-48a1-b081-dec9db67326e.image.png?v=1659802023688" title="Seslendirmen">
+      <% } %>
+      <% if(users.badges[i] == "Tasarımcı") { %>
+        <img id="icon" src="https://cdn.glitch.global/e40803d6-689d-4f0f-be66-debb139801d0/684c4dd1-9f1d-4cb4-8621-ab2fa6f9f80c.image.png?v=1659803755258" title="Tasarımcı">
+      <% } %>
+ <% } %>
+      </div>
+      <div class="card-footer">
+        <button class="btn" onclick="goster_<%=users._id%>()">
+          İşlem yap
+        </button>
+        <div id="a<%=users._id%>"><br>
+        <form method="POST" action="/admin/remove/user/<%= users._id %>">
+          <input type="submit" class="btn text-danger" value="Hesabı devre dışı bırak">
+        </form>  
+        <form method="GET" action="/admin/add/badge/<%= users._id %>">
+          <input type="submit" class="btn text-dark" value="Rozet ekle">  
+        </form>
+        <form method="GET" action="/admin/edit/user/<%=users._id%>">
+          <input type="submit" class="btn text-dark" value="Kullanıcıyı düzenle">
+        </form>
+        </div>
+        </div>
+    </div>
+  </div>
+    <% }) %>
+</div>
+  <h4 class="m-t">Galeri</h4>
+  <div class="row">
+  
+  <% photos.forEach( photos => { %>
+  <div class="col-md-4">
+    <div class="card m-t">
+      <img class="card-top-img" src="<%= photos.photo %>">
+      <div class="card-body">
+        <h4><%= photos.title %></h4>
+        <label><%= photos.description %></label>
+      </div>
+      <div class="card-footer">
+        <form method="POST" action="/admin/remove/photo/<%= photos._id %>">
+          <input type="submit" class="btn btn-danger" value="Sil">
+        </form>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+</div>
+        
+        
+<% if(user.admin != "true"){ %>  
+<script>
+window.onload = ()=>{
+  window.location.href = "/"
+}  
+</script>
+<% } %>
+  <style>
+    img{
+      width:60%;
+      margin-top:1vh;
+    }
+    #box{
+      display:none;
+    }
+  </style>
+ 

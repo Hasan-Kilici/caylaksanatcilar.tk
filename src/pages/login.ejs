@@ -1,0 +1,14 @@
+<%- include("../partials/head") %>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <form method="POST" action="/login">
+          <label>Kullanıcı Adı</label>
+          <input type="text" class="form-control" id="username" name="username">
+          <label>Şifre</label>
+          <input type="text" class="form-control" id="password" name="password"><br>
+          <input type="submit" class="btn btn-dark" value="Giriş yap">
+        </form>
+      </div>
+    </div>
+  </div>
